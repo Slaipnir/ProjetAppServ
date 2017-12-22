@@ -1,0 +1,36 @@
+
+public class Livre implements Document {
+	private int id;
+	private int nom;
+	private int etat; // 0  = libre, 1 = reservé, 2 = emprunté
+	private Abonne ab;
+ 
+	@Override
+	public int numero() {
+		return id;
+	}
+
+	@Override
+	public void reserver(Abonne ab) throws PasLibreException {
+		if ( (this.etat == 1 && !this.ab.equals(ab)) || this.etat == 2)
+			throw new PasLibreException(this);
+		this.etat = 1;
+	}
+
+	@Override
+	public void emprunter(Abonne ab) throws PasLibreException {
+		if (this.etat == 1 && !this.ab.equals(ab))
+			throw new PasLibreException(this);
+		this.etat = 2;
+	}
+
+	@Override
+	public void retour() {
+		etat = 0;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+}
