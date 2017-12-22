@@ -1,10 +1,18 @@
 
 public class Livre implements Document {
 	private int id;
-	private int nom;
+	private String nom;
 	private int etat; // 0  = libre, 1 = reservé, 2 = emprunté
 	private Abonne ab;
- 
+	
+	public Livre(int id, String nom){
+		this.id = id;
+		this.nom = nom;
+		this.etat = 0;
+		ab = null;
+	}
+	
+	
 	@Override
 	public int numero() {
 		return id;

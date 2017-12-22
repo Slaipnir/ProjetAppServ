@@ -3,6 +3,11 @@ import java.net.Socket;
 public class ServiceEmprunter implements IService {
 	
 	Socket s;
+	Bibliotheque b;
+	
+	public ServiceEmprunter(Bibliotheque b) {
+		this.b = b;
+	}
 	
 	@Override
 	public void run() {
