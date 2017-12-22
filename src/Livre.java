@@ -20,16 +20,18 @@ public class Livre implements Document {
 
 	@Override
 	public void reserver(Abonne ab) throws PasLibreException {
-		if ( (this.etat == 1 && !this.ab.equals(ab)) || this.etat == 2)
+		if ( (this.etat == 1 && !ab.equals(this.ab)) || this.etat == 2)
 			throw new PasLibreException(this);
 		this.etat = 1;
+		this.ab = ab;
 	}
 
 	@Override
 	public void emprunter(Abonne ab) throws PasLibreException {
-		if (this.etat == 1 && !this.ab.equals(ab))
+		if (this.etat == 1 && !ab.equals(this.ab))
 			throw new PasLibreException(this);
 		this.etat = 2;
+		this.ab = ab;
 	}
 
 	@Override

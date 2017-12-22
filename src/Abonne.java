@@ -9,6 +9,9 @@ public class Abonne {
 	}
 	
 	public boolean equals(Abonne a){
+		if (a == null){
+			return false;
+		}
 		return this.id == a.id;
 	}
 	
