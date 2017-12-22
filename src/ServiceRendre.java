@@ -25,7 +25,7 @@ public class ServiceRendre implements IService{
 				str = socketIn.readLine();
 				numLivre = Integer.parseInt(str);
 				b.getDoc(numLivre).retour();
-				socketOut.println("Retour effectué !\nVoulez vous rendre un autre livre");
+				socketOut.println("Retour effectué !##Voulez vous rendre un autre livre");
 				str = socketIn.readLine();
 			}
 			s.close();

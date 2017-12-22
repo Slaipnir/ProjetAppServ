@@ -28,7 +28,7 @@ public class ServiceEmprunter implements IService {
 			Abonne a = b.getAbo(numAbo);
 			
 			while(!str.equals("non")){
-				socketOut.println("Bonjour Monsieur " + a.getNom() + ",\nVeuillez rentrer le numéro du livre à emprunter");
+				socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à emprunter");
 				numLivre = Integer.parseInt(socketIn.readLine());
 				b.getDoc(numLivre).emprunter(a);
 				socketOut.println("Voulez vous emprunter un autre livre ?");

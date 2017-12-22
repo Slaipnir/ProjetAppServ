@@ -28,7 +28,7 @@ public class ServiceReserver implements IService {
 			Abonne a = b.getAbo(numAbo);
 			
 			while(!str.equals("non")){
-				socketOut.println("Bonjour Monsieur " + a.getNom() + ",\nVeuillez rentrer le numéro du livre à reserver");
+				socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à reserver");
 				str = socketIn.readLine();
 				numLivre = Integer.parseInt(str);
 				b.getDoc(numLivre).reserver(a);
