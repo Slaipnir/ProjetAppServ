@@ -20,14 +20,23 @@ public class ServiceReserver implements IService {
 			BufferedReader socketIn = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String str;
 			int numAbo;
+			int numLivre;
 			
 			socketOut.println("Veuillez rentrer votre numéro d'abonné");
 			str = socketIn.readLine();
 			numAbo = Integer.parseInt(str);
+			Abonne a = b.getAbo(numAbo);
 			
-			
+			while(!str.equals("non")){
+				socketOut.println("Bonjour Monsieur " + a.getNom() + ",\nVeuillez rentrer le numéro du livre à reserver");
+				numLivre = Integer.parseInt(socketIn.readLine());
+				b.getDoc(numLivre).reserver(a);
+				socketOut.println("Voulez vous reserver un autre livre ?");
+				str = socketIn.readLine();
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch( PasLibreException e){
 			e.printStackTrace();
 		}
 	}

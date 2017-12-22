@@ -40,5 +40,9 @@ public class Livre implements Document {
 	public int getEtat() {
 		return etat;
 	}
-
+	
+	
+	public int getId(){
+		return this.id;
+	}
 }

@@ -11,4 +11,12 @@ public class Abonne {
 	public boolean equals(Abonne a){
 		return this.id == a.id;
 	}
+	
+	public int getId(){
+		return this.id;
+	}
+	
+	public String getNom(){
+		return this.nom;
+	}
 }

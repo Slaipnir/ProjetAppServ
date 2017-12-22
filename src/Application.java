@@ -9,10 +9,10 @@ public class Application {
 	public static final int _PORT_RENDRE = 2700;
 	
 	public static Bibliotheque creerBibliotheque(){
-		List<Document> list = new ArrayList<Document>();
+		List<Livre> list = new ArrayList<Livre>();
 		List<Abonne> listA = new ArrayList<Abonne>();
 		
-		Document d1 = new Livre(1,"Livre1");
+		Livre d1 = new Livre(1,"Livre1");
 		list.add(d1);
 		d1 = new Livre(2,"Livre2");
 		list.add(d1);
