@@ -34,11 +34,12 @@ public class ServiceEmprunter implements IService {
 				socketOut.println("Voulez vous emprunter un autre livre ?");
 				str = socketIn.readLine();
 			}
+			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch( PasLibreException e){
 			e.printStackTrace();
-		}
+		}		
 	}
 
 	@Override

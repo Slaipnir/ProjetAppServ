@@ -29,11 +29,13 @@ public class ServiceReserver implements IService {
 			
 			while(!str.equals("non")){
 				socketOut.println("Bonjour Monsieur " + a.getNom() + ",\nVeuillez rentrer le numéro du livre à reserver");
-				numLivre = Integer.parseInt(socketIn.readLine());
+				str = socketIn.readLine();
+				numLivre = Integer.parseInt(str);
 				b.getDoc(numLivre).reserver(a);
 				socketOut.println("Voulez vous reserver un autre livre ?");
 				str = socketIn.readLine();
 			}
+			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch( PasLibreException e){
