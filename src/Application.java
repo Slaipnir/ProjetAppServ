@@ -8,7 +8,7 @@ public class Application {
 	public static final int _PORT_EMPRUNTER = 2600;
 	public static final int _PORT_RENDRE = 2700;
 	
-	public Bibliotheque creerBibliotheque(){
+	public static Bibliotheque creerBibliotheque(){
 		List<Document> list = new ArrayList<Document>();
 		List<Abonne> listA = new ArrayList<Abonne>();
 		
@@ -38,13 +38,13 @@ public class Application {
 	
 	
 	public static void main(String[] args) {
-		List<Abonne> listAbo;
 		try {
+			Bibliotheque b = creerBibliotheque();
 			System.out.println("Connection au serveur !");
 			
-			IService s1 = new ServiceReserver();
-			IService s2 = new ServiceEmprunter();
-			IService s3 = new ServiceRendre();
+			IService s1 = new ServiceReserver(b);
+			IService s2 = new ServiceEmprunter(b);
+			IService s3 = new ServiceRendre(b);
 			
 			new Thread(new Serveur(_PORT_RESERVER,s1)).start();
 			new Thread(new Serveur(_PORT_EMPRUNTER,s2)).start();
