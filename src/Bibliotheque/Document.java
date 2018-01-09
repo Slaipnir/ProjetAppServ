@@ -1,3 +1,4 @@
+package Bibliotheque;
 
 public interface Document {
 	int numero();

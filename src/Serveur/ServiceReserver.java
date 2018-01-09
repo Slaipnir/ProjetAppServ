@@ -1,15 +1,21 @@
+package Serveur;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ServiceEmprunter implements IService {
+import Bibliotheque.Abonne;
+import Bibliotheque.Bibliotheque;
+import Bibliotheque.Livre;
+import Bibliotheque.PasLibreException;
+
+public class ServiceReserver implements IService {
 	
 	Socket s;
 	Bibliotheque b;
 	
-	public ServiceEmprunter(Bibliotheque b) {
+	public ServiceReserver(Bibliotheque b) {
 		this.b = b;
 	}
 	
@@ -34,22 +40,21 @@ public class ServiceEmprunter implements IService {
 					socketOut.println("Cette Abonné n'existe pas !##Veuillez rentrer votre numéro d'abonné");
 			}
 			
-			
-			socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à emprunter");
+			socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à reserver");
 			
 			while (l == null){
-				numLivre = Integer.parseInt(socketIn.readLine());
-				l = b.getDoc(numLivre);
+				str = socketIn.readLine();
+				numLivre = Integer.parseInt(str);
+				l = b.getDoc(numLivre);		
 				if (l == null )
-					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à emprunter");
-				else {
+					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à reserver");
+				else
 					try {
-						l.emprunter(a);
-					} catch (PasLibreException e) {
+						l.reserver(a);
+					} catch (PasLibreException e) {			
 						socketOut.println(e + "##Appuyer sur Entrée");
 						socketIn.readLine();
-					}
-				}
+					}			
 			}
 			
 			s.close();

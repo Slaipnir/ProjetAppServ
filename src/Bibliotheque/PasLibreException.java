@@ -1,4 +1,4 @@
-
+package Bibliotheque;
 public class PasLibreException extends Exception {
 	
 	private Livre l;
