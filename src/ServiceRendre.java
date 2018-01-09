@@ -20,14 +20,20 @@ public class ServiceRendre implements IService{
 			BufferedReader socketIn = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String str = "";
 			int numLivre;
-			while(!str.equals("non")){
-				socketOut.println("Donnez le numéro du livre à rendre");
+			Livre l = null;
+			
+			socketOut.println("Veuiller rentrer le numéro du livre à rendre");
+			
+			while (l == null){
 				str = socketIn.readLine();
 				numLivre = Integer.parseInt(str);
-				b.getDoc(numLivre).retour();
-				socketOut.println("Retour effectué !##Voulez vous rendre un autre livre");
-				str = socketIn.readLine();
+				l = b.getDoc(numLivre);
+				if (l == null)
+					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à rendre");
+				else 
+					l.retour();
 			}
+			
 			s.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

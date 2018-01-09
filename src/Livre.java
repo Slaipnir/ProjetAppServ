@@ -19,7 +19,7 @@ public class Livre implements Document {
 	}
 
 	@Override
-	public void reserver(Abonne ab) throws PasLibreException {
+	public synchronized void reserver(Abonne ab) throws PasLibreException {
 		if ( (this.etat == 1 && !ab.equals(this.ab)) || this.etat == 2)
 			throw new PasLibreException(this);
 		this.etat = 1;
@@ -27,7 +27,7 @@ public class Livre implements Document {
 	}
 
 	@Override
-	public void emprunter(Abonne ab) throws PasLibreException {
+	public synchronized void emprunter(Abonne ab) throws PasLibreException {
 		if (this.etat == 1 && !ab.equals(this.ab))
 			throw new PasLibreException(this);
 		this.etat = 2;

@@ -21,19 +21,32 @@ public class ServiceEmprunter implements IService {
 			String str;
 			int numAbo;
 			int numLivre;
+			Abonne a = null;
+			Livre l = null;
 			
 			socketOut.println("Veuillez rentrer votre numéro d'abonné");
-			str = socketIn.readLine();
-			numAbo = Integer.parseInt(str);
-			Abonne a = b.getAbo(numAbo);
 			
-			while(!str.equals("non")){
-				socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à emprunter");
-				numLivre = Integer.parseInt(socketIn.readLine());
-				b.getDoc(numLivre).emprunter(a);
-				socketOut.println("Voulez vous emprunter un autre livre ?");
+			while(a == null){
 				str = socketIn.readLine();
+				numAbo = Integer.parseInt(str);
+				a = b.getAbo(numAbo);
+				if (a == null)
+					socketOut.println("Cette Abonné n'existe pas !##Veuillez rentrer votre numéro d'abonné");
 			}
+			
+			
+			socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à emprunter");
+			
+			while (l == null){
+				numLivre = Integer.parseInt(socketIn.readLine());
+				l = b.getDoc(numLivre);
+				if (l == null )
+					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à emprunter");
+				else {
+					l.emprunter(a);
+				}
+			}
+			
 			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
