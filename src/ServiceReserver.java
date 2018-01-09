@@ -21,24 +21,36 @@ public class ServiceReserver implements IService {
 			String str;
 			int numAbo;
 			int numLivre;
+			Abonne a = null;
+			Livre l = null;
 			
 			socketOut.println("Veuillez rentrer votre numéro d'abonné");
-			str = socketIn.readLine();
-			numAbo = Integer.parseInt(str);
-			Abonne a = b.getAbo(numAbo);
 			
+			while(a == null){
+				str = socketIn.readLine();
+				numAbo = Integer.parseInt(str);
+				a = b.getAbo(numAbo);
+				if (a == null)
+					socketOut.println("Cette Abonné n'existe pas !##Veuillez rentrer votre numéro d'abonné");
+			}
 			
 			socketOut.println("Bonjour Monsieur " + a.getNom() + ",##Veuillez rentrer le numéro du livre à reserver");
-			str = socketIn.readLine();
-			numLivre = Integer.parseInt(str);
-			b.getDoc(numLivre).reserver(a);
 			
+			while (l == null){
+				str = socketIn.readLine();
+				numLivre = Integer.parseInt(str);
+				l = b.getDoc(numLivre);		
+				if (l == null )
+					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à reserver");
+				else
+					l.reserver(a);			
+			}
 			
 			s.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("le serveur est fermé");
 		} catch( PasLibreException e){
-			e.printStackTrace();
+			System.out.println(e);
 		}
 	}
 

@@ -5,6 +5,7 @@ public class PasLibreException extends Exception {
 	
 	public PasLibreException(Livre l){
 		super();
+		this.l = l;
 	}
 	
 	public String toString(){
