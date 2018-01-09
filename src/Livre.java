@@ -5,7 +5,7 @@ public class Livre implements Document {
 	private String nom;
 	private int etat; // 0  = libre, 1 = reservé, 2 = emprunté
 	private Abonne ab;
-	private Timer t;
+	private Timer t = null;
 	
 	public Livre(int id, String nom){
 		this.id = id;
@@ -37,7 +37,8 @@ public class Livre implements Document {
 			throw new PasLibreException(this);
 		this.etat = 2;
 		this.ab = ab;
-		t.cancel();
+		if (t != null)
+			t.cancel();
 	}
 
 	@Override
