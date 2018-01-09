@@ -36,8 +36,7 @@ public class ServiceRendre implements IService{
 			
 			s.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Le client est partie");
 		}	
 	}
 

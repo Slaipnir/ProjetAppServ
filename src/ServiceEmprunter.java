@@ -46,7 +46,7 @@ public class ServiceEmprunter implements IService {
 					try {
 						l.emprunter(a);
 					} catch (PasLibreException e) {
-						socketOut.println(e + "##Envoyer Ok");
+						socketOut.println(e + "##Appuyer sur Entrée");
 						socketIn.readLine();
 					}
 				}
@@ -54,7 +54,7 @@ public class ServiceEmprunter implements IService {
 			
 			s.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Le client est partie");
 		}
 	}
 

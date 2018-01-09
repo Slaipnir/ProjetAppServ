@@ -46,14 +46,14 @@ public class ServiceReserver implements IService {
 					try {
 						l.reserver(a);
 					} catch (PasLibreException e) {			
-						socketOut.println(e + "##Envoyer Ok");
+						socketOut.println(e + "##Appuyer sur Entrée");
 						socketIn.readLine();
 					}			
 			}
 			
 			s.close();
 		} catch (IOException e) {
-			System.out.println("le serveur est fermé");
+			System.out.println("Le client est partie");
 		}
 	}
 
