@@ -43,16 +43,18 @@ public class ServiceEmprunter implements IService {
 				if (l == null )
 					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à emprunter");
 				else {
-					l.emprunter(a);
+					try {
+						l.emprunter(a);
+					} catch (PasLibreException e) {
+						socketOut.println(e);
+					}
 				}
 			}
 			
 			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch( PasLibreException e){
-			e.printStackTrace();
-		}		
+		}
 	}
 
 	@Override

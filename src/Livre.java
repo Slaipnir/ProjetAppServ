@@ -33,7 +33,7 @@ public class Livre implements Document {
 
 	@Override
 	public synchronized void emprunter(Abonne ab) throws PasLibreException {
-		if (this.etat == 1 && !ab.equals(this.ab))
+		if ((this.etat == 1 && !ab.equals(this.ab)) || this.etat == 2)
 			throw new PasLibreException(this);
 		this.etat = 2;
 		this.ab = ab;

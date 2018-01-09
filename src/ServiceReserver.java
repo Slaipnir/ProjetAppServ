@@ -43,14 +43,16 @@ public class ServiceReserver implements IService {
 				if (l == null )
 					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à reserver");
 				else
-					l.reserver(a);			
+					try {
+						l.reserver(a);
+					} catch (PasLibreException e) {			
+						socketOut.println(e);
+					}			
 			}
 			
 			s.close();
 		} catch (IOException e) {
 			System.out.println("le serveur est fermé");
-		} catch( PasLibreException e){
-			System.out.println(e);
 		}
 	}
 
