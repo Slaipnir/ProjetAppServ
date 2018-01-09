@@ -1,9 +1,11 @@
+import java.util.Timer;
 
 public class Livre implements Document {
 	private int id;
 	private String nom;
 	private int etat; // 0  = libre, 1 = reservé, 2 = emprunté
 	private Abonne ab;
+	private Timer t;
 	
 	public Livre(int id, String nom){
 		this.id = id;
@@ -24,6 +26,9 @@ public class Livre implements Document {
 			throw new PasLibreException(this);
 		this.etat = 1;
 		this.ab = ab;
+		long delay = 30000; //delai avant le lancement de la tache programmer par le timer
+		t = new Timer();
+		t.schedule(new TimerRendre(this), delay);
 	}
 
 	@Override
@@ -32,6 +37,7 @@ public class Livre implements Document {
 			throw new PasLibreException(this);
 		this.etat = 2;
 		this.ab = ab;
+		t.cancel();
 	}
 
 	@Override
