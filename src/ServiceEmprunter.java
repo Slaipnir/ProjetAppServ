@@ -46,7 +46,8 @@ public class ServiceEmprunter implements IService {
 					try {
 						l.emprunter(a);
 					} catch (PasLibreException e) {
-						socketOut.println(e);
+						socketOut.println(e + "##Envoyer Ok");
+						socketIn.readLine();
 					}
 				}
 			}

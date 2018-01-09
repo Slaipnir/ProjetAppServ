@@ -46,7 +46,8 @@ public class ServiceReserver implements IService {
 					try {
 						l.reserver(a);
 					} catch (PasLibreException e) {			
-						socketOut.println(e);
+						socketOut.println(e + "##Envoyer Ok");
+						socketIn.readLine();
 					}			
 			}
 			
